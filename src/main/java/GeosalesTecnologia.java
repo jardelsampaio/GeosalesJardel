@@ -1,5 +1,5 @@
 public class GeosalesTecnologia {
-    String setores;
+    String setor;
     int telefone;
 
 }
