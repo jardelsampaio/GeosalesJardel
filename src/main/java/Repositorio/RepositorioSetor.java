@@ -1,18 +1,18 @@
-package Repositorio;
+package repositorio;
 
-import Entidades.Setor;
+import entidades.Setor;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class RepositorioSetor implements IRepositorioSetor {
 
-
+    //Array
     List<Setor> listaSetores = new ArrayList<Setor>();
 
     @Override
     public boolean salvarSetor(Setor setor) {
-        try {
+        try { //Tratamento de exceção para tratar erro
             listaSetores.add(setor);
         } catch (Exception e) {
             return false;
@@ -37,15 +37,17 @@ public class RepositorioSetor implements IRepositorioSetor {
     }
 
     @Override
-    public boolean alterarSetor(Setor setor) {
-
+    public boolean alterarSetor(long id, Setor setor) {
+        boolean deuCerto = false;
+        Setor setorAuxiiar = new Setor();
         for (Setor setor1 : listaSetores) {
-            if(setor1.getId()==setor.getId()){
-
-                listaSetores.remove(setor1);
-                listaSetores.add(setor);
+            if(setor1.getId()==id){
+                deuCerto = true;
+                setorAuxiiar = setor1;
             }
         }
-        return false;
+        listaSetores.remove(setorAuxiiar);
+        listaSetores.add(setor);
+        return deuCerto;
     }
 }

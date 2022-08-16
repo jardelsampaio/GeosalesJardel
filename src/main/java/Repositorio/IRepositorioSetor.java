@@ -1,6 +1,6 @@
-package Repositorio;
+package repositorio;
 
-import Entidades.Setor;
+import entidades.Setor;
 
 import java.util.List;
 
@@ -10,6 +10,6 @@ public interface IRepositorioSetor {
     public boolean salvarSetor(Setor setor);
     public boolean deletarSetorPorID(Long id);
     public List<Setor> listarSetor();
-    public boolean alterarSetor(Setor setor);
+    public boolean alterarSetor(long id, Setor setor);
 
 }

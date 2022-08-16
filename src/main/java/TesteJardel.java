@@ -1,29 +1,31 @@
-import Entidades.Setor;
-import Repositorio.RepositorioSetor;
+import entidades.Setor;
+import repositorio.RepositorioSetor;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 public class TesteJardel {
     private static RepositorioSetor rs = new RepositorioSetor();
     public static void main(String[] args) {
 
         popularArray();
-        listarSetores();
-        rs.deletarSetorPorID(2L);
-        listarSetores();
-        alterar();
-        listarSetores();
-    }
-
-    public static void alterar(){
+//        listarSetores();
+//        rs.deletarSetorPorID(2L);
+//        listarSetores();
 
         Setor setor = new Setor();
         setor.setId(3);
         setor.setNome("Marketing");
         setor.setTelefone(76426789);
-        rs.alterarSetor(setor);
+
+        alterar(2,setor);
+
+        listarSetores();
+    }
+
+    public static void alterar(long id, Setor setor){
+
+        rs.alterarSetor(id, setor);
 
     }
     public static void popularArray() {
