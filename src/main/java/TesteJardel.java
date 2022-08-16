@@ -1,45 +1,64 @@
+import Entidades.Setor;
+import Repositorio.RepositorioSetor;
+
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class TesteJardel {
+    private static RepositorioSetor rs = new RepositorioSetor();
     public static void main(String[] args) {
-        Scanner leia = new Scanner(System.in);
-        //String atualiza = "Jardel";
-        //System.out.println(atualiza);
-        //atualiza = "sampaio";
-        //System.out.println(atualiza);
-        ArrayList<Setor> lista = new ArrayList<Setor>();
+
+        popularArray();
+        listarSetores();
+        rs.deletarSetorPorID(2L);
+        listarSetores();
+        alterar();
+        listarSetores();
+    }
+
+    public static void alterar(){
+
+        Setor setor = new Setor();
+        setor.setId(3);
+        setor.setNome("Marketing");
+        setor.setTelefone(76426789);
+        rs.alterarSetor(setor);
+
+    }
+    public static void popularArray() {
+
+            Setor setor1 = new Setor();
+            setor1.setId(1);
+            setor1.setNome("Desenvolvimento");
+            setor1.setTelefone(996507380);
+            rs.salvarSetor(setor1);
+
+            Setor setor2 = new Setor();
+            setor2.setId(2);
+            setor2.setNome("Customer Service");
+            setor2.setTelefone(88766574);
+            rs.salvarSetor(setor2);
+
+            Setor setor = new Setor();
+            setor.setId(3);
+            setor.setNome("Comercial");
+            setor.setTelefone(89357574);
+            rs.salvarSetor(setor);
+
+        }
+
+     public static void listarSetores(){
+        List<Setor> lista = new ArrayList<Setor>();
 
 
-        char controle = 's';
-        do {
-            System.out.println("Digite o nome: ");
-            String n = leia.next();
-            System.out.println("Digite o telefone");
-            int  i = leia.nextInt();
-            Setor geo = new Setor(n,i);
-            lista.add(geo);
-            System.out.println("Deseja cadastrar outro setor? s ou S para sim");
-            controle = leia.next().charAt(0);
-        }while(controle == 's' || controle == 'S');
+        lista = rs.listarSetor();
 
-        do {
-            System.out.println("Deseja Atualizar o Setor? s ou S para sim");
-            controle = leia.next().charAt(0);
-            System.out.println("Digite o novo nome: ");
-            String n = leia.next();
-            System.out.println("Digite o novo telefone");
-            int  i = leia.nextInt();
-        }while(controle == 's' || controle == 'S');
-
-        do{
-            System.out.println("Deseja deletar o Setor? s ou S para sim");
-            controle = leia.next().charAt(0);
-            lista.remove(0);
-        }while(controle == 's' || controle == 'S');
-
-        for (Setor i: lista){
-            System.out.println(i);
+        for (Setor setor : lista) {
+            System.out.println("Id : "+setor.getId());
+            System.out.println("Nome : "+setor.getNome());
+            System.out.println("Telefone : "+setor.getTelefone());
+            System.out.println("----------------------------------------------");
         }
     }
 }
